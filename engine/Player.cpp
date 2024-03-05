@@ -1,12 +1,15 @@
 #include "Player.hpp"
 
-Player::Player (int x, int y, int vx, int vy) {
+Player::Player (int x, int y, int vx, int vy, int w, int h, std::vector<Collider>& colliders) : collider(x, y, w, h) {
   pos.x = x;
   pos.y = y;
   vel.x = vx;
   vel.y = vy;
   accel.x = 0;
   accel.y = 0;
+  width = w;
+  height = h;
+  colliders.push_back(collider);
 };
 void Player::update (float dt) {
   getInput();
@@ -23,6 +26,9 @@ void Player::update (float dt) {
   if(fabs(vel.y) < minVel) {
     vel.y = 0;
   }
+
+  collider.pos.x = pos.x;
+  collider.pos.y = pos.y;
 };
 
 
@@ -57,5 +63,5 @@ void Player::getInput () {
 };
 
 void Player::draw () {
-  DrawRectangle(pos.x - 5, pos.y + 5, 10, 10, WHITE);
+  DrawRectangle(pos.x, pos.y, width, height, WHITE);
 }

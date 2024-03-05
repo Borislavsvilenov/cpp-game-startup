@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game(int w, int h) : WindowWidth(w), WindowHeight(h), player(300, 600, 0, 0) {
+Game::Game(int w, int h) : WindowWidth(w), WindowHeight(h), player(300, 600, 0, 0, 10, 10, colliders) {
   SetTargetFPS(60);
 };
 
@@ -18,7 +18,7 @@ const bool Game::run() {
 
 void Game::update() {
   BeginDrawing();
-  ClearBackground((Color){7, 17, 47, 100});
+  ClearBackground((Color){7, 17, 37, 100});
 
   player.update(0.01f);
   player.draw();

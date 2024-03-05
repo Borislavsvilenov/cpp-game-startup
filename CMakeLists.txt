@@ -8,7 +8,7 @@ include_directories(Engine PRIVATE engine Objects)
 include(CTest)
 enable_testing()
 
-add_executable(Engine main.cpp engine/Game.cpp engine/Game.hpp engine/Player.hpp engine/Player.cpp)
+add_executable(Engine main.cpp engine/Game.cpp engine/Game.hpp engine/Player.hpp engine/Player.cpp engine/Collider.cpp engine/Collider.hpp)
 target_link_libraries(Engine PRIVATE raylib)
 target_compile_features(Engine PRIVATE cxx_std_11)
 
