@@ -4,6 +4,7 @@
 #include <cmath>
 #include "Collider.hpp"
 #include "Player.hpp"
+#include "Empty.hpp"
 
 class Game {
 public:
