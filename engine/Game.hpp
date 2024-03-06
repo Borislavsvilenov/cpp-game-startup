@@ -11,7 +11,8 @@ public:
   int WindowWidth;
   int WindowHeight;
 
-  std::vector<Collider> colliders;
+  std::vector<Collider*> colliders;
+  std::vector<Empty> NPCs;
 
   Player player;
 

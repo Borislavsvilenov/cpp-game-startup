@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-Player::Player (int x, int y, int vx, int vy, int w, int h, std::vector<Collider> &colliders, int i) : collider(x, y, w, h) {
+Player::Player (int x, int y, int vx, int vy, int w, int h, std::vector<Collider*> &colliders) : collider(x, y, w, h) {
   pos.x = x;
   pos.y = y;
   vel.x = vx;
@@ -9,23 +9,22 @@ Player::Player (int x, int y, int vx, int vy, int w, int h, std::vector<Collider
   accel.y = 0;
   size.x = w;
   size.y = h;
-  id = i;
-  colliders.push_back(collider);
+  colliders.push_back(&collider);
 };
-void Player::update (float dt, std::vector<Collider> &colliders) {
+void Player::update (float dt, std::vector<Collider*> &colliders) {
   getInput();
 
   vel.x += accel.x * dt;
   vel.y += accel.y * dt;
 
-  for (int i = 0; i < colliders.size(); i++) {
-    if (id != i) {
-      if (collider.collidesWith(colliders[i])) {
+  for (Collider* other : colliders) {
+    if (&collider != other) {
+      if (collider.collidesWith(*other)) {
         Vector2 diff;
-        diff.x = collider.pos.x - colliders[i].pos.x;
-        diff.y = collider.pos.y - colliders[i].pos.y;
+        diff.x = collider.pos.x - other->pos.x;
+        diff.y = collider.pos.y - other->pos.y;
         float d = std::sqrt(diff.x * diff.x + diff.y * diff.y);
-        float overlap = (collider.size.x + colliders[i].size.x - d) / 2;
+        float overlap = (collider.size.x + other->size.x - d) / 2;
 
         diff.x /= d;
         diff.y /= d;
