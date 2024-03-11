@@ -4,7 +4,6 @@
 #include <cmath>
 #include "Collider.hpp"
 #include "Player.hpp"
-#include "Empty.hpp"
 
 class Game {
 public:
@@ -12,7 +11,6 @@ public:
   int WindowHeight;
 
   std::vector<Collider*> colliders;
-  std::vector<Empty> NPCs;
 
   Player player;
 

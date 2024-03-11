@@ -24,10 +24,5 @@ void Game::update() {
   player.update(0.01f, colliders);
   player.draw();
 
-  for (int i = 0; i < NPCs.size(); i++) {
-    NPCs[i].update(0.01f, colliders);
-    NPCs[i].draw();
-  }
-
   EndDrawing();
 };
